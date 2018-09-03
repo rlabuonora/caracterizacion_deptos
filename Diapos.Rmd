@@ -1,0 +1,180 @@
+---
+title: "Caracterización de los Departamentos de Uruguay"
+author: "Transforma Uruguay"
+date: "2018/8/30"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, cache = TRUE, echo = FALSE)
+library(here)
+source(here('src','pca.R'))
+source(here('src','visual.R'))
+source(here('src', 'mapas.R'))
+
+```
+
+
+# Objetivos
+
+
+--
+
+- Importancia de usar indicadores para tomar definiciones de asignación de recursos
+
+
+--
+
+- Redundancia en el set de indicadores disponible (pib per cápita, desarrollo humano, subempleo, etc.)
+
+--
+
+- Metodología para aprovechar la información disponible
+
+--
+
+- Agrupación de los departamentos de Uruguay en grupos de departamentos con valores similares de los indicadores analizados.
+
+---
+class: center
+# Grupo 1
+
+
+Montevideo
+
+---
+class:  center
+# Grupo 2 
+
+
+Canelones
+
+---
+class: center
+# Grupo 4: Rezagados
+
+.pull-left[
+
+```{r, echo = FALSE}
+clusters <- select(deptos, depto, grupo_2) %>% filter(grupo_2 == 4)
+
+tabla <- knitr::kable(clusters, caption = NULL) %>%
+  kable_styling("striped", full_width = F) 
+ 
+gsub("<thead>.*</thead>", "", tabla)
+  
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+mp_rezagados
+```
+
+]
+
+---
+class: center
+# Grupo 2: Intermedios
+
+.pull-left[
+```{r, echo = FALSE}
+clusters <- select(deptos, depto, grupo_2) %>% filter(grupo_2 == 2)
+
+tabla <- knitr::kable(clusters, caption = NULL) %>%
+  kable_styling("striped", full_width = F) 
+
+gsub("<thead>.*</thead>", "", tabla)
+  
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+mp_intermedios
+```
+
+]
+---
+class: center
+# Grupo 5: Despegados
+
+.pull-left[
+```{r, echo = FALSE}
+clusters <- select(deptos, depto, grupo_2) %>% filter(grupo_2 == 5)
+
+tabla <- knitr::kable(clusters, caption = NULL) %>%
+  kable_styling("striped", full_width = F)
+
+gsub("<thead>.*</thead>", "", tabla)
+  
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+mp_despegados
+```
+
+]
+
+---
+class: middle, center
+
+# Clústers y Componentes Principales
+
+
+
+```{r, echo = FALSE}
+g_ind_2
+```
+
+---
+class: middle, center
+# PIB per cápita
+
+```{r, echo = FALSE}
+pib
+```
+
+---
+class: middle, center
+# Subempleo
+
+```{r, echo = FALSE}
+sub
+```
+---
+class: middle, center
+# Informalidad
+
+```{r, echo = FALSE}
+infor
+```
+---
+class: middle, center
+# Uso de Celulares
+
+```{r, echo = FALSE}
+celular
+```
+---
+class: middle, center
+# Autoempleo
+
+```{r, echo = FALSE}
+autoempleo
+```
+---
+class: middle, center
+# Uso de TICS
+
+```{r, echo = FALSE}
+pc_laptop
+```
